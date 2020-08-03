@@ -1,0 +1,21 @@
+@mixin nowrap() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  word-break: normal;
+}
+
+@mixin pull_left() {
+  float: left !important;
+}
+
+@mixin pull_right() {
+  float: right !important;
+}
+
+@mixin break() {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}

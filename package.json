@@ -1,0 +1,67 @@
+{
+  "name": "vue-cli",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "bootstrap": "yxtnpm i",
+    "serve": "vue-cli-service serve",
+    "dev": "npm run bootstrap && vue-cli-service serve",
+    "build": "npm run bootstrap && vue-cli-service build",
+    "aliyundev": "npm run bootstrap && vue-cli-service build --mode aliyundev",
+    "ucloudstg": "npm run bootstrap && vue-cli-service build --mode ucloudstg",
+    "aliyunpro": "npm run bootstrap && vue-cli-service build --mode aliyunprod",
+    "i18n:report": "vue-cli-service i18n:report --src src/language.js --locales src/language/*.js'",
+    "lint": "eslint ./src --ext .js,.vue,.ts,.tsx && stylelint \"src/assets/styles/*.scss\" --fix"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "axios": "^0.18.0",
+    "babel-plugin-import": "^1.13.0",
+    "core-js": "^2.6.5",
+    "jquery": "^3.4.1",
+    "lib-flexible": "^0.3.2",
+    "moment": "^2.24.0",
+    "sa-sdk-javascript": "^1.14.19",
+    "vconsole": "^3.3.4",
+    "vue": "^2.6.10",
+    "vue-i18n": "^8.14.0",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1",
+    "yxt-biz-h5": "^1.1.25",
+    "yxt-h5": "^1.1.15"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.2",
+    "node-sass": "^4.11.0",
+    "postcss-pxtorem": "^4.0.1",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^13.3.3",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{vue,css,less}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  }
+}

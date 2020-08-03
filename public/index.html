@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache" />
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate" />
+    <title></title>
+    <% for (var i in
+    htmlWebpackPlugin.options.cdn&&htmlWebpackPlugin.options.cdn.css) { %>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="<%= htmlWebpackPlugin.options.cdn.css[i]%>?<%= htmlWebpackPlugin.options.version %>"
+    />
+    <% } %>
+  </head>
+  <body>
+    <div id="app" v-cloak></div>
+    <% for (var i in
+    htmlWebpackPlugin.options.cdn&&htmlWebpackPlugin.options.cdn.js) { %>
+    <script
+      type="text/javascript"
+      src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"
+    ></script>
+    <% } %>
+  </body>
+</html>

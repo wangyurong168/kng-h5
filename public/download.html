@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+  <title>下载</title>
+  <% for (var i in
+    htmlWebpackPlugin.options.cdn&&htmlWebpackPlugin.options.cdn.css) { %>
+  <link rel="stylesheet" type="text/css"
+    href="<%= htmlWebpackPlugin.options.cdn.css[i]%>?<%= htmlWebpackPlugin.options.version %>" />
+  <% } %>
+  <style>
+    a:hover {
+      color: white !important
+    }
+
+    .btn-android {
+      color: #1a81da;
+      border: solid 1px #1a81da;
+      height: 1.17333rem;
+      font-size: 0.48rem;
+      border-radius: 0.08rem;
+    }
+
+    .btn-android:hover {
+      color: #1a81da !important;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    (function () {
+      reset();
+      window.addEventListener("orientationchange", function () {
+        reset();
+      });
+      window.addEventListener("resize", function () {
+        reset();
+      });
+
+      function reset() {
+        var width = document.documentElement.clientWidth;
+        document.querySelector("html").style.fontSize = width / 10 + "px";
+      }
+    })();
+  </script>
+  <script type="text/javascript" src="static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="https://static.yxt.com/res/scripts/bridge.3.0.0.min.js?v=30007"></script>
+  <script type="text/javascript" src="https://cdn-h5.yunxuetang.cn/new/static/js/bridge.1.0.0.js"></script>
+  <script type="text/javascript" src="static/js/common.js"></script>
+  <script>
+    (function () {
+      var version = "?v=" + new Date().getTime(),
+        sc = "<script src='https://media1.yunxuetang.cn/yxt/systemfiles/js/appconfig.js" + version + "'></sc" +
+        "ript>";
+      document.write(sc);
+    })();
+  </script>
+  <div>
+    <div class="container">
+      <div class="download-bg"
+        style="background:url('static/media/launch1.png')no-repeat left top;width:100%;height:100%;background-size:100%;position:absolute;left:0;top:0;">
+      </div>
+      <footer class="mb30">
+        <div class="ph40">
+          <a class="yui-btn yui-btn-primary yui-btn-md text-white" style="line-height:30px" id="downloadhref"
+            onclick="downloadnew()">立即下载</a>
+          <a style="display: none;"
+            class=" btn-android layout-flex layout-flex-align-center layout-flex-pack-center mt20 font-size-14"
+            id="isAndroid">OPPO/VIVO自带浏览器下载</a>
+          <div class="border-default text-info text-center lh40" id="showDownloadtip">
+            正在安装，请按Home键到后台查看
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="weixin-notice" id="isWeiXin">
+      <div class="filter"></div>
+      <div class="notice">
+        <p class="text-center pt50 clearfix">
+          <div class="text-center mt50" style="display:none">
+            <button class="btn">关闭</button>
+          </div>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $("#isWeiXin, #isWeiXin .btn").on("click", function () {
+      // close();
+    });
+
+    function close() {
+      $('#isWeiXin').css("display", "none");
+    }
+
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    }
+
+    $('#isIOS9').css("display", "none");
+    $('#downloadhref').css("display", "");
+    $('#showDownloadtip').css("display", "none");
+    $('#isWeiXin').css("display", "none");
+    var orgCode = getUrlParam('c'), // 机构code
+      androidVersion = '', // 安卓版本
+      iosVersion = '', // IOS版本
+      iphoneUrl = '', // iphone下载地址
+      androidurl = '',
+      picUrl = '',
+      isWeiXin = false,
+      downloadUrl = '';
+    var commonandroidVersion = '', // 安卓版本
+      commoniosVersion = '', // IOS版本
+      commoniphoneUrl = '', // iphone下载地址
+      commonandroidurl = '';
+    if (orgCode !== null && orgCode !== '' && orgCode !== 'undefined') {
+      // app版本信息(定制包)
+      if (window.appconfig !== null) {
+        for (var item in window.appconfig) {
+          if (window.appconfig[item].orgcode === '') {
+            commonandroidVersion = window.appconfig[item].androidv;
+            commoniosVersion = window.appconfig[item].iphonev;
+            commoniphoneUrl = window.appconfig[item].iphoneurl;
+            commonandroidurl = window.appconfig[item].androidurl;
+          }
+          if (window.appconfig[item].orgcode === this.orgCode) {
+            androidVersion = window.appconfig[item].androidv;
+            iosVersion = window.appconfig[item].iphonev;
+            iphoneUrl = window.appconfig[item].iphoneurl;
+            androidurl = window.appconfig[item].androidurl;
+            picUrl = window.appconfig[item].downloadBackImg;
+          }
+        }
+      }
+    } else {
+      // app版本信息(通用包)
+      if (window.appconfig !== null) {
+        for (var item in window.appconfig) {
+          if (window.appconfig[item].orgcode === '') {
+            androidVersion = window.appconfig[item].androidv;
+            iosVersion = window.appconfig[item].iphonev;
+            iphoneUrl = window.appconfig[item].iphoneurl;
+            androidurl = window.appconfig[item].androidurl;
+            break;
+          }
+        }
+      }
+    }
+
+    if (androidVersion == '') {
+      androidVersion = commonandroidVersion;
+    }
+    if (iosVersion == '') {
+      iosVersion = commoniosVersion;
+    }
+    if (iphoneUrl == '') {
+      iphoneUrl = commoniphoneUrl;
+    }
+    if (androidurl == '') {
+      androidurl = commonandroidurl;
+    }
+    if (picUrl == '') {
+      picUrl = 'static/media/launch1.png';
+    }
+    $(".download-bg").css("background-image", 'url("' + picUrl + '")')
+    if (window.browser.versions.weixin) {
+      isWeiXin = true;
+      $('#isWeiXin').css("display", "");
+    }
+    if (window.browser.versions.ios) {
+      $('#isIOS9').css("display", "");
+    } else {
+      $("#isAndroid").show();
+    }
+
+    if (!isWeiXin) {
+      var code = orgCode;
+      if (window.browser.versions.ios) {
+        if (code && code !== '') {
+          if (code === 'lecai') {
+            downloadUrl = iphoneUrl;
+          } else {
+            if (code === 'hisensecollege') {
+              downloadUrl = 'http://www.onlinelearning.hisense.com/hisensecollege/iosdown.htm';
+            } else {
+              if (iosVersion < 10500) {
+                downloadUrl = 'https://itunes.apple.com/us/app/yun-xue-tang-le-cai-qi-ye/id1073503502?mt=8&uo=4&v=' +
+                  Math.random();
+              } else {
+                downloadUrl = iphoneUrl;
+              }
+            }
+          }
+        } else {
+          // ios下载地址
+          downloadUrl = iphoneUrl;
+        }
+      } else if (window.browser.versions.android) {
+        downloadUrl = androidurl;
+      }
+      $("#downloadhref").attr("href", downloadUrl);
+      $("#isAndroid").attr("href", downloadUrl.replace(/^https/, 'http'));
+    }
+
+    function downloadnew() {
+      if (window.browser.versions.ios) {
+        if (orgCode === 'plateno') {
+          // translate.Hint_Warning("common_msg_appstorereview");
+          return false;
+        } else {
+          $('#downloadhref').css("display", "none");
+          $('#showDownloadtip').css("display", "");
+          return true;
+        }
+      } else {
+        return true;
+      }
+    }
+  </script>
+</body>
+
+</html>

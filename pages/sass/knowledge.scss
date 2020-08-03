@@ -1,0 +1,269 @@
+
+.yui-whole-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+
+  .yui-content {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// 知识操作栏
+.yui-kngdetail-page,
+.yui-operations-page {
+  display: flex;
+
+  .yui-operations-info {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.yui-screen-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yui-contribute-container,
+.yui-relateList-container {
+  display: flex;
+  align-items: center;
+
+  .contribute-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+  }
+
+  .relateList-img {
+    width: 116px;
+    height: 65px;
+    border-radius: 3px;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  //竖屏  CSS
+  .yui-whole-page {
+    .kng-operation-wrapper {
+      display: block;
+    }
+  }
+}
+
+@media screen and (orientation: landscape) {
+  //横CSS
+  .yui-whole-page {
+    .kng-operation-wrapper {
+      display: none;
+    }
+  }
+}
+
+.yui-reward-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-cut {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.add-study-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 54px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.yui-reward-container,
+.yui-videoDoc-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.yui-input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  line-height: 40px;
+  text-indent: 16px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.yui-input::-webkit-input-placeholder,
+.yui-input::-moz-input-placeholder,
+.yui-input::-ms-input-placeholder {
+  color: #bfbfbf;
+}
+
+.yui-reward-list-container {
+  display: flex;
+  justify-content: space-between;
+
+  .yui-reward-list {
+    width: 80px;
+    height: 40px;
+    color: #999;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+}
+
+.num-down {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  height: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #fff;
+  line-height: 30px;
+  text-align: left;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 15px 0 0 15px;
+}
+
+.num-down-iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 15;
+  height: 30px;
+  padding-left: 20px;
+  color: #fff;
+  line-height: 30px;
+  text-align: left;
+  background: rgba(0, 0, 0, .3);
+}
+
+.detail-play-container {
+  height: 210px;
+
+  .detail_play-coverUrl {
+    width: 100%;
+    height: 210px;
+  }
+
+  .detail_mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+    background: rgba(0, 0, 0, .5);
+  }
+
+  .detail_play_icon {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    z-index: 9;
+    color: #fff;
+    font-size: 1.28rem;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.ebook-detail,
+.ebook-iframe,
+.scorm-detail,
+.scorm-iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.play-video-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+.detail-play-study {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  z-index: 9;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.yxt-circle__text--font-size-12 {
+  font-size: 12px !important;
+}
+
+.kng-play-catalog {
+  position: absolute;
+  top: 43px;
+  right: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 16px;
+  color: #fff;
+  line-height: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 6px 6px;
+
+  .kng-play-catalog-text {
+    display: inline-block;
+    width: 40px;
+    margin-left: -2px;
+    font-size: 12px;
+    transform: scale(0.7);
+  }
+}
+
+.catalog-flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.loading-center .yxt-loading__spinner--circular {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
